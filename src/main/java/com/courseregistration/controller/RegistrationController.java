@@ -1,5 +1,4 @@
 package com.courseregistration.controller;
-
 import com.courseregistration.service.RegistrationService;
 import com.courseregistration.contract.RegistrationResponse;
 import com.courseregistration.model.Registration;
