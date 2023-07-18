@@ -16,7 +16,7 @@ import java.util.Optional;
 @RestController
 public class CourseController {
     private final CourseService courseService;
-    private final CourseRepository courseRepository;
+    private final CourseRepository courseRepository; // Repository dependency should be removed
 
     @Autowired
     public CourseController(CourseService courseService, CourseRepository courseRepository) {
@@ -47,8 +47,13 @@ public class CourseController {
     }
 
     @PutMapping("/courses/{id}")
+    // TODO: Contract should be used instead of model
+    // Introduce validation using @Valid annotation
+    // Make sure name is not empty
+    // Make sure capacity is not negative or zero
     public ResponseEntity<Course> updateCourseById(@PathVariable Long id, @RequestBody Course newCourseData) {
         Optional<Course> oldCourseData = courseRepository.findById(id);
+        // any business logic should be written in service layer
         if (oldCourseData.isPresent()) {
             Course updatedCourse = oldCourseData.get();
             updatedCourse.setName(newCourseData.getName());

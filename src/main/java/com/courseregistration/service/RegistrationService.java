@@ -74,6 +74,7 @@ public class RegistrationService {
                 .build();
     }
 
+    // Use model mapping
     public RegistrationResponse updateRegistrationById(Long id, Registration updatedRegistration) {
         Registration registration = registrationRepository.findById(id).orElseThrow(() -> {
             return new RegistrationNotFoundException(id);
