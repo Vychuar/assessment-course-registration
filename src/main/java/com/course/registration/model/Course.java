@@ -1,4 +1,4 @@
-package com.courseregistration.model;
+package com.course.registration.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,13 +7,11 @@ import lombok.*;
 @Table(name = "courses")
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
 @Getter
 @ToString
 public class Course {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private String name;
     private int capacity;

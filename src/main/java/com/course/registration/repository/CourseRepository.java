@@ -1,6 +1,6 @@
-package com.courseregistration.repository;
+package com.course.registration.repository;
 
-import com.courseregistration.model.Course;
+import com.course.registration.model.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
