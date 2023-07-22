@@ -3,6 +3,7 @@ import com.course.registration.contract.CourseDto;
 import com.course.registration.exception.CourseNotFoundException;
 import com.course.registration.model.Course;
 import com.course.registration.repository.CourseRepository;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,21 +38,17 @@ public class CourseService {
         Course courseEntity = courseRepository.save(modelMapper.map(courseDto, Course.class));
         return modelMapper.map(courseEntity, CourseDto.class);
 
+
     }
 
 
     public CourseDto updateCourseById(Long id, CourseDto course) {
-        Optional<Course> oldData = courseRepository.findById(id);
-
-        if (oldData.isPresent()) {
-            Course existingCourse = oldData.get();
+        Course existingCourse = courseRepository.findById(id).orElseThrow(() -> new CourseNotFoundException(id));
             modelMapper.map(course, existingCourse);
             Course updatedCourse = courseRepository.save(existingCourse);
             return modelMapper.map(updatedCourse, CourseDto.class);
-        } else {
-            throw new CourseNotFoundException(id);
         }
-    }
+
 public void deleteById(long id){
         if(!courseRepository.existsById(id)){
             throw new CourseNotFoundException(id);

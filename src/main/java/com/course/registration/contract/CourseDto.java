@@ -14,8 +14,7 @@ public class CourseDto {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
-    @ValidName
-    private String name;
+    @ValidName private String name;
     private int capacity;
     private int currentEnrollment;
 }
