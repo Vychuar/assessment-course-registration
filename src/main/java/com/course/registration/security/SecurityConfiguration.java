@@ -1,4 +1,4 @@
-package com.courseregistration.security;
+package com.course.registration.security;
 
 
 import org.springframework.context.annotation.Bean;
