@@ -1,8 +1,11 @@
 package com.course.registration.contract;
 
-import com.course.registration.validation.ValidName;
-import jakarta.persistence.*;
 
+
+
+import com.course.registration.validation.ValidCapacity;
+import com.course.registration.validation.ValidCurrentEnrollment;
+import com.course.registration.validation.ValidName;
 import lombok.*;
 
 @Builder
@@ -10,11 +13,11 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class CourseDto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+
     private Long id;
     @ValidName private String name;
-    private int capacity;
-    private int currentEnrollment;
+    @ValidCapacity private int capacity;
+    @ValidCurrentEnrollment private int currentEnrollment;
 }

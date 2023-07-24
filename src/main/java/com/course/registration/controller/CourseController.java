@@ -40,13 +40,13 @@ public class CourseController {
     @PostMapping
     public ResponseEntity<CourseDto> addCourses(@Valid @RequestBody CourseDto course) {
         CourseDto courseDto = courseService.addCourses(course);
-        return ResponseEntity.status(HttpStatus.CREATED).body(courseDto);
+        return new ResponseEntity<>(courseDto,HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CourseDto> updateCourseById(@PathVariable Long id, @Valid @RequestBody CourseDto course) {
         CourseDto updatedCourses = courseService.updateCourseById(id, course);
-        return new ResponseEntity<>(updatedCourses,HttpStatus.CREATED);
+        return ResponseEntity.ok(updatedCourses);
     }
 
     @DeleteMapping("{id}")

@@ -1,5 +1,6 @@
 package com.course.registration;
 
+import org.apache.catalina.valves.rewrite.RewriteValve;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration;
 import org.springframework.boot.SpringApplication;
@@ -14,11 +15,12 @@ public class CourseRegistrationSystem {
 	}
 	@Bean
 	public ModelMapper modelMapper() {
-		ModelMapper mapper = new ModelMapper();
-		mapper.getConfiguration()
+		ModelMapper modelMapper = new ModelMapper();
+		modelMapper
+				.getConfiguration()
 				.setFieldMatchingEnabled(true)
 				.setFieldAccessLevel(Configuration.AccessLevel.PRIVATE);
-		return new ModelMapper();
+		return modelMapper;
 	}
 
 }

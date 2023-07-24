@@ -1,17 +1,19 @@
 package com.course.registration.validation;
 
+
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 import java.lang.annotation.*;
 
+@Documented
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = NameValidator.class)
-@Documented
+
 public @interface ValidName {
 
-        String message() default "coursename provided should not be empty";
+        String message() default "coursename should not be empty";
 
         Class<?>[] groups() default {};
 

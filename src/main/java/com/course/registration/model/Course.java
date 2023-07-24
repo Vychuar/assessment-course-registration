@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@ToString
+
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)

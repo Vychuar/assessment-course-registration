@@ -37,17 +37,26 @@ public class CourseService {
     public CourseDto addCourses(CourseDto courseDto) {
         Course courseEntity = courseRepository.save(modelMapper.map(courseDto, Course.class));
         return modelMapper.map(courseEntity, CourseDto.class);
-
-
     }
 
 
     public CourseDto updateCourseById(Long id, CourseDto course) {
-        Course existingCourse = courseRepository.findById(id).orElseThrow(() -> new CourseNotFoundException(id));
-            modelMapper.map(course, existingCourse);
-            Course updatedCourse = courseRepository.save(existingCourse);
-            return modelMapper.map(updatedCourse, CourseDto.class);
+        Optional<Course> oldCourseData=courseRepository.findById(id);
+        if (oldCourseData.isPresent()) {
+            Course existingCourse = oldCourseData.get();
+            Course updatedExistingCourse =
+                    new Course(
+                            existingCourse.getId(),
+                            course.getName(),
+                            course.getCapacity(),
+                            course.getCurrentEnrollment());
+                            Course savedCourse =
+                    courseRepository.save(updatedExistingCourse);
+            return modelMapper.map(savedCourse, CourseDto.class);
+        } else {
+            throw new CourseNotFoundException(id);
         }
+    }
 
 public void deleteById(long id){
         if(!courseRepository.existsById(id)){
