@@ -1,8 +1,5 @@
 package com.course.registration.contract;
 
-
-
-
 import com.course.registration.validation.ValidCapacity;
 import com.course.registration.validation.ValidCurrentEnrollment;
 import com.course.registration.validation.ValidName;

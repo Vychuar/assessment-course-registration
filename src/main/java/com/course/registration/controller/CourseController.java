@@ -1,16 +1,14 @@
 package com.course.registration.controller;
 
 import com.course.registration.contract.CourseDto;
-import com.course.registration.model.Course;
 import com.course.registration.repository.CourseRepository;
 import com.course.registration.service.CourseService;
 import jakarta.validation.Valid;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/courses")
@@ -22,6 +20,7 @@ public class CourseController {
         this.courseService = courseService;
         this.courseRepository = courseRepository;
     }
+
     @GetMapping
     public ResponseEntity<List<CourseDto>> getAllCourses() {
         List<CourseDto> courses = courseService.getAllCourses();
@@ -40,11 +39,12 @@ public class CourseController {
     @PostMapping
     public ResponseEntity<CourseDto> addCourses(@Valid @RequestBody CourseDto course) {
         CourseDto courseDto = courseService.addCourses(course);
-        return new ResponseEntity<>(courseDto,HttpStatus.CREATED);
+        return new ResponseEntity<>(courseDto, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CourseDto> updateCourseById(@PathVariable Long id, @Valid @RequestBody CourseDto course) {
+    public ResponseEntity<CourseDto> updateCourseById(
+            @PathVariable Long id, @Valid @RequestBody CourseDto course) {
         CourseDto updatedCourses = courseService.updateCourseById(id, course);
         return ResponseEntity.ok(updatedCourses);
     }

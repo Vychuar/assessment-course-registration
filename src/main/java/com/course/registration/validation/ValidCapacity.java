@@ -2,9 +2,7 @@ package com.course.registration.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-
 import java.lang.annotation.*;
-
 
 @Documented
 @Constraint(validatedBy = CapacityValidator.class)

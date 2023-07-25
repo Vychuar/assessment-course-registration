@@ -3,7 +3,6 @@ package com.course.registration.validation;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-
 public class CapacityValidator implements ConstraintValidator<ValidCapacity, Integer> {
     @Override
     public boolean isValid(

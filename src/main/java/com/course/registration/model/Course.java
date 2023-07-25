@@ -8,11 +8,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
+
     private String name;
     private int capacity;
     private int currentEnrollment;

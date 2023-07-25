@@ -10,4 +10,3 @@ public class NameValidator implements ConstraintValidator<ValidName, String> {
         return StringUtils.hasText(name);
     }
 }
-

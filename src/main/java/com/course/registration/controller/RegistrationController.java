@@ -1,23 +1,18 @@
 package com.course.registration.controller;
 
-
 import com.course.registration.contract.RegistrationDto;
-import com.course.registration.model.Registration;
 import com.course.registration.service.RegistrationService;
 import jakarta.validation.Valid;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/registrations")
 public class RegistrationController {
     private final RegistrationService registrationService;
-
-
 
     @Autowired
     public RegistrationController(RegistrationService registrationService) {
@@ -40,17 +35,19 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public ResponseEntity<RegistrationDto> addRegistration(@Valid @RequestBody Registration registration) {
+    public ResponseEntity<RegistrationDto> addRegistration(
+            @Valid @RequestBody RegistrationDto registration) {
         RegistrationDto addedRegistration = registrationService.addRegistration(registration);
         return ResponseEntity.status(HttpStatus.CREATED).body(addedRegistration);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RegistrationDto> updateRegistrationById(@PathVariable Long id, @Valid @RequestBody Registration updatedRegistration) {
-        RegistrationDto updatedRegistrations = registrationService.updateRegistrationById(id, updatedRegistration);
+    public ResponseEntity<RegistrationDto> updateRegistrationById(
+            @PathVariable Long id, @Valid @RequestBody RegistrationDto updatedRegistration) {
+        RegistrationDto updatedRegistrations =
+                registrationService.updateRegistrationById(id, updatedRegistration);
         return ResponseEntity.ok(updatedRegistrations);
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteRegistrationById(@PathVariable Long id) {
